@@ -9,27 +9,29 @@ button.addEventListener("click", function(){
 
 //print the junior instructors to the DOM
 let jrInstructors = document.getElementById("jr-instructors")
-staff.forEach(jrInstructor => {
-    jrInstructors.appendChild(`${jrInstructor} is a junior instructor at NSS`);
+staff.juniorInstructors.forEach(jrInstructor => {
+    let element = document.createElement('p')
+   element.textContent = `jrInstructors${jrInstructor} is a junior instructor at NSS`;
+   jrInstructors.appendChild(element)
 });
 
 
 //console log each of the schools in the school array individually and console log them
 schools.forEach(schools => {
+    for (i=0; i < schools.length; i++)
     console.log(schools);
 });
-
 
 //print each of the lead instructors to the console
 for(let i = 0; i <= staff.instructors.length; i++){
     console.log(staff.instructors[i]);
 }
 
-
 //print the result to the console
 let parkInfo = {};
 fetch("https://external-data-56670.firebaseio.com/park-info.json")
+.then(response => response.json())
 .then(result => {
     parkInfo = result;
+    console.log(parkInfo);
 });
-console.log(parkInfo);
